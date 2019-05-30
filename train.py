@@ -31,6 +31,9 @@ def create_training_instances(
     # parse annotations of the validation set, if any, otherwise split the training set
     if os.path.exists(valid_annot_folder):
         valid_ints, valid_labels = parse_voc_annotation(valid_annot_folder, valid_image_folder, valid_cache, labels)
+        if len(valid_ints) == 0:
+            print("No validation instances found in validation folders.")
+            return None, None, None, None
     else:
         print("valid_annot_folder not exists. Spliting the trainining set.")
 
